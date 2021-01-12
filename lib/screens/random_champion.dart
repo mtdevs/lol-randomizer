@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lol_random/constants.dart';
+import '../utilities/champion.dart';
+import '../widgets/bottom_action_button.dart';
 
 class RandomChampion extends StatefulWidget {
   @override
@@ -7,6 +9,8 @@ class RandomChampion extends StatefulWidget {
 }
 
 class _RandomChampionState extends State<RandomChampion> {
+  final Champion champion = Champion();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,12 +21,10 @@ class _RandomChampionState extends State<RandomChampion> {
         children: [
           // Champion image
           Expanded(
-            flex: 4,
+            flex: 6,
             child: Container(
               margin: EdgeInsets.all(20.0),
-              child: Image.network(
-                'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg',
-              ),
+              child: Image.network(champion.avatar),
             ),
           ),
           // Champion name and title
@@ -32,14 +34,14 @@ class _RandomChampionState extends State<RandomChampion> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Aatrox',
+                  champion.name,
                   style: kChampionNameTextStyle,
                 ),
                 SizedBox(
                   height: 20.0,
                 ),
                 Text(
-                  'the Darkin Blade',
+                  champion.title,
                   style: kChampionTitleTextStyle,
                 ),
               ],
@@ -57,34 +59,58 @@ class _RandomChampionState extends State<RandomChampion> {
                     child: Row(
                       children: [
                         Expanded(
-                          child: Text(
-                            'Attack: 8',
-                            style: kChampionStatTextStyle,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'Attack: ',
+                                style: kChampionStatTextStyle,
+                              ),
+                              Text(champion.attack.toString()),
+                            ],
                           ),
                         ),
                         Expanded(
-                          child: Text(
-                            'Defense: 4',
-                            style: kChampionStatTextStyle,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'Defense: ',
+                                style: kChampionStatTextStyle,
+                              ),
+                              Text(champion.defense.toString()),
+                            ],
                           ),
                         ),
                       ],
                     ),
                   ),
-                  // STats right side
+                  // Stats right side
                   Expanded(
                     child: Row(
                       children: [
                         Expanded(
-                          child: Text(
-                            'Magic: 3',
-                            style: kChampionStatTextStyle,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'Magic: ',
+                                style: kChampionStatTextStyle,
+                              ),
+                              Text(champion.magic.toString()),
+                            ],
                           ),
                         ),
                         Expanded(
-                          child: Text(
-                            'Difficulty: 4',
-                            style: kChampionStatTextStyle,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'Difficulty: ',
+                                style: kChampionStatTextStyle,
+                              ),
+                              Text(champion.difficulty.toString()),
+                            ],
                           ),
                         ),
                       ],
@@ -96,31 +122,25 @@ class _RandomChampionState extends State<RandomChampion> {
           ),
           // Go back re-roll
           Container(
-            height: 80.0,
+            height: 60.0,
             child: Row(
               children: [
                 Expanded(
                   flex: 2,
-                  child: Container(
+                  child: BottomActionButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     color: Colors.red,
-                    child: Center(
-                      child: Text(
-                        'Go Back',
-                        style: kChampionStatTextStyle,
-                      ),
-                    ),
+                    text: 'Go Back',
                   ),
                 ),
                 Expanded(
                   flex: 4,
-                  child: Container(
+                  child: BottomActionButton(
+                    onPressed: () {},
                     color: Colors.black,
-                    child: Center(
-                      child: Text(
-                        'Re-Roll',
-                        style: kChampionStatTextStyle,
-                      ),
-                    ),
+                    text: 'Re-Roll',
                   ),
                 ),
               ],

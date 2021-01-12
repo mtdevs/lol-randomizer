@@ -29,9 +29,11 @@ const kChampionNameTextStyle = TextStyle(
 const kChampionTitleTextStyle = TextStyle(
   fontSize: 16.0,
   fontFamily: 'Friz Regular',
+  color: Color(0xFFAAAAAA),
 );
 
 const kChampionStatTextStyle = TextStyle(
-  fontSize: 16.0,
+  fontSize: 14.0,
   fontFamily: 'Friz Regular',
+  color: Color(0xFF837558),
 );
